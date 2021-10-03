@@ -33,6 +33,9 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake/Modules)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
 ########################################################
 
+unset(NANOCLR_PROJECT_INCLUDE_DIRS CACHE)
+unset(NANOBOOTER_PROJECT_INCLUDE_DIRS CACHE)
+
 include(binutils.common)
 
 ######################################################
@@ -760,13 +763,13 @@ set(IS_COMMUNITY_TARGET FALSE CACHE INTERNAL "Community target flag")
 
 
 # Define PLATFORM base path
-set(BASE_PATH_FOR_PLATFORM ${CMAKE_CURRENT_SOURCE_DIR})
+set(BASE_PATH_FOR_PLATFORM ${CMAKE_CURRENT_SOURCE_DIR}/targets/${RTOS})
 
 #######################
-# FreeRTOS
-if(RTOS_FREERTOS_CHECK)
+# FreeRTOS or AzureRTOS
+if(RTOS_FREERTOS_CHECK OR RTOS_AZURERTOS_CHECK)
 
-    add_subdirectory(targets/FreeRTOS)
+    add_subdirectory(targets/${RTOS})
 
 #######################
 # FreeRTOS ESP32
@@ -807,12 +810,6 @@ elseif(RTOS_FREERTOS_ESP32_CHECK)
 
     endif()
 
-#######################
-# AzureRTOS
-elseif(RTOS_AZURERTOS_CHECK)
-
-    add_subdirectory(targets/AzureRTOS)
-    
 #######################
 # All standard nanoFramework Platforms
 else()
