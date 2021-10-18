@@ -9,7 +9,6 @@
 /*                                                                        */
 /**************************************************************************/
 
-
 /**************************************************************************/
 /**************************************************************************/
 /**                                                                       */
@@ -19,7 +18,6 @@
 /**                                                                       */
 /**************************************************************************/
 /**************************************************************************/
-
 
 /**************************************************************************/
 /*                                                                        */
@@ -61,7 +59,7 @@
 /* Define Basic Internet packet header data type.  This will be used to
    build new IP packets and to examine incoming packets into NetX.  */
 
-typedef  struct NX_IPV6_HEADER_STRUCT
+typedef struct NX_IPV6_HEADER_STRUCT
 {
     /*
        Define the first 32-bit word of the IP header.  This word contains
@@ -90,7 +88,6 @@ typedef  struct NX_IPV6_HEADER_STRUCT
     ULONG nx_ip_header_destination_ip[4];
 } NX_IPV6_HEADER;
 
-
 /* Define the data structure of the IPv6 optional field used in
    hop-by-hop option and destination option headers. */
 typedef struct NX_IPV6_HEADER_OPTION_STRUCT
@@ -103,14 +100,15 @@ typedef struct NX_IPV6_HEADER_OPTION_STRUCT
     UCHAR nx_ipv6_header_option_ext_length;
 
     /* ICMPv6 Option header type. */
-    /*lint -esym(768,NX_IPV6_HEADER_OPTION_STRUCT::nx_ipv6_header_option_type) suppress member not referenced. It is not used as a host. */
+    /*lint -esym(768,NX_IPV6_HEADER_OPTION_STRUCT::nx_ipv6_header_option_type) suppress member not referenced. It is not
+     * used as a host. */
     UCHAR nx_ipv6_header_option_type;
 
     /* ICMPv6 Option-specific area. */
-    /*lint -esym(768,NX_IPV6_HEADER_OPTION_STRUCT::nx_ipv6_header_option_data) suppress member not referenced. It is not used as a host. */
+    /*lint -esym(768,NX_IPV6_HEADER_OPTION_STRUCT::nx_ipv6_header_option_data) suppress member not referenced. It is not
+     * used as a host. */
     UCHAR nx_ipv6_header_option_data;
 } NX_IPV6_HEADER_OPTION;
-
 
 /* Hop by hop header optoin. */
 typedef struct NX_IPV6_HOP_BY_HOP_OPTION_STRUCT
@@ -122,32 +120,36 @@ typedef struct NX_IPV6_HOP_BY_HOP_OPTION_STRUCT
     UCHAR nx_ipv6_hop_by_hop_length;
 
     /* Start point of the option data. */
-    /*lint -esym(768,NX_IPV6_HOP_BY_HOP_OPTION_STRUCT::nx_ipv6_hop_by_hop_data) suppress member not referenced. It is not used as a host. */
+    /*lint -esym(768,NX_IPV6_HOP_BY_HOP_OPTION_STRUCT::nx_ipv6_hop_by_hop_data) suppress member not referenced. It is
+     * not used as a host. */
     USHORT nx_ipv6_hop_by_hop_data;
 } NX_IPV6_HOP_BY_HOP_OPTION;
-
 
 /* Routing header option. */
 typedef struct NX_IPV6_HEADER_ROUTING_OPTION_STRUCT
 {
 
     /* A hint to the protocol that follows. */
-    /*lint -esym(768,NX_IPV6_HEADER_ROUTING_OPTION_STRUCT::nx_ipv6_header_routing_option_next_header) suppress member not referenced. It is not used as a host. */
+    /*lint -esym(768,NX_IPV6_HEADER_ROUTING_OPTION_STRUCT::nx_ipv6_header_routing_option_next_header) suppress member
+     * not referenced. It is not used as a host. */
     UCHAR nx_ipv6_header_routing_option_next_header;
 
     /* Header length. */
-    /*lint -esym(768,NX_IPV6_HEADER_ROUTING_OPTION_STRUCT::nx_ipv6_header_routing_option_hdr_ext_len) suppress member not referenced. It is not used as a host. */
+    /*lint -esym(768,NX_IPV6_HEADER_ROUTING_OPTION_STRUCT::nx_ipv6_header_routing_option_hdr_ext_len) suppress member
+     * not referenced. It is not used as a host. */
     UCHAR nx_ipv6_header_routing_option_hdr_ext_len;
 
     /* Router type. */
-    /*lint -esym(768,NX_IPV6_HEADER_ROUTING_OPTION_STRUCT::nx_ipv6_header_routing_option_routing_type) suppress member not referenced. It is not used as a host. */
+    /*lint -esym(768,NX_IPV6_HEADER_ROUTING_OPTION_STRUCT::nx_ipv6_header_routing_option_routing_type) suppress member
+     * not referenced. It is not used as a host. */
     UCHAR nx_ipv6_header_routing_option_routing_type;
 
     /* Segments left. */
     UCHAR nx_ipv6_header_routing_option_segments_left;
 
     /* Data. */
-    /*lint -esym(768,NX_IPV6_HEADER_ROUTING_OPTION_STRUCT::nx_ipv6_header_routing_option_data) suppress member not referenced. It is not used as a host. */
+    /*lint -esym(768,NX_IPV6_HEADER_ROUTING_OPTION_STRUCT::nx_ipv6_header_routing_option_data) suppress member not
+     * referenced. It is not used as a host. */
     ULONG *nx_ipv6_header_routing_option_data;
 } NX_IPV6_HEADER_ROUTING_OPTION;
 
@@ -169,23 +171,21 @@ typedef struct NX_IPV6_HEADER_FRAGMENT_OPTION_STRUCT
 
 /* Unicast address type.  Note that site local address types have been
    deprectated in RFC 4291 and are treated as global address types. */
-#define IPV6_ADDRESS_LINKLOCAL    0x00000001
+#define IPV6_ADDRESS_LINKLOCAL 0x00000001
 /*
 #define IPV6_ADDRESS_SITELOCAL    0x00000002
  */
-#define IPV6_ADDRESS_GLOBAL       0x00000004
+#define IPV6_ADDRESS_GLOBAL 0x00000004
 
 /* Multicast address type */
 #define IPV6_ALL_NODE_MCAST       0x00000010
 #define IPV6_ALL_ROUTER_MCAST     0x00000020
 #define IPV6_SOLICITED_NODE_MCAST 0x00000040
 
-#define IPV6_ADDRESS_UNICAST      0x80000000
-#define IPV6_ADDRESS_MULTICAST    0x40000000
-#define IPV6_ADDRESS_UNSPECIFIED  0x20000000
-#define IPV6_ADDRESS_LOOPBACK     0x10000000
-
-
+#define IPV6_ADDRESS_UNICAST     0x80000000
+#define IPV6_ADDRESS_MULTICAST   0x40000000
+#define IPV6_ADDRESS_UNSPECIFIED 0x20000000
+#define IPV6_ADDRESS_LOOPBACK    0x10000000
 
 /*
     The following symbols define the order of the IPv6 optional
@@ -208,19 +208,17 @@ typedef struct NX_IPV6_HEADER_FRAGMENT_OPTION_STRUCT
  */
 enum NX_IPV6_OPTION_STATE
 {
-    IPV6_BASE_HEADER,               /* 0 */
-    HOP_BY_HOP_HEADER,              /* 1 */
-    DESTINATION_HEADER_1,           /* 2 */
-    ROUTING_HEADER,                 /* 3 */
-    FRAGMENT_HEADER,                /* 4 */
+    IPV6_BASE_HEADER,     /* 0 */
+    HOP_BY_HOP_HEADER,    /* 1 */
+    DESTINATION_HEADER_1, /* 2 */
+    ROUTING_HEADER,       /* 3 */
+    FRAGMENT_HEADER,      /* 4 */
 #ifdef NX_IPSEC_ENABLE
-    AUTHENTICATION_HEADER,          /* 5 */
-    ENCAP_SECURITY_HEADER,          /* 6 */
-#endif /* NX_IPSEC_ENABLE */
-    DESTINATION_HEADER_2            /* 7 */
+    AUTHENTICATION_HEADER, /* 5 */
+    ENCAP_SECURITY_HEADER, /* 6 */
+#endif                     /* NX_IPSEC_ENABLE */
+    DESTINATION_HEADER_2   /* 7 */
 };
-
-
 
 #if 0 /* Not support for STM32L4XX.  */
 /* Define IPv6 internal functions. */
@@ -256,8 +254,6 @@ INT   _nxd_ipv6_search_onlink(NX_IP *ip_ptr, ULONG *dest_addr);
 
 #endif /* FEATURE_NX_IPV6 */
 
-
-
 /*
    If NX_IPV6_UTIL_INLINE is defined, the functions are compiled as inline functions.
    Inline functions improve execution speed.  However it also increases code size.
@@ -267,33 +263,62 @@ INT   _nxd_ipv6_search_onlink(NX_IP *ip_ptr, ULONG *dest_addr);
 #ifndef NX_IPV6_UTIL_INLINE
 
 #ifdef NX_IPSEC_ENABLE
-INT  CHECK_IPV6_ADDRESS_RANGE(ULONG *ip_addr_start, ULONG *ip_addr_end, ULONG *ip_addr);
+INT CHECK_IPV6_ADDRESS_RANGE(ULONG *ip_addr_start, ULONG *ip_addr_end, ULONG *ip_addr);
 #endif /* NX_IPSEC_ENABLE */
-INT  CHECK_IPV6_ADDRESSES_SAME(ULONG *ip_dest, ULONG *myip);
-INT  CHECK_UNSPECIFIED_ADDRESS(ULONG *ip_addr);
+INT CHECK_IPV6_ADDRESSES_SAME(ULONG *ip_dest, ULONG *myip);
+INT CHECK_UNSPECIFIED_ADDRESS(ULONG *ip_addr);
 void SET_UNSPECIFIED_ADDRESS(ULONG *ip_addr);
 void COPY_IPV6_ADDRESS(ULONG *copy_from, ULONG *copy_to);
-void COPY_NXD_ADDRESS(NXD_ADDRESS *copy_from, NXD_ADDRESS  *copy_to);
+void COPY_NXD_ADDRESS(NXD_ADDRESS *copy_from, NXD_ADDRESS *copy_to);
 void SET_SOLICITED_NODE_MULTICAST_ADDRESS(ULONG *address, ULONG *unicast_address);
-INT  CHECK_ALL_ROUTER_MCAST_ADDRESS(ULONG *address);
+INT CHECK_ALL_ROUTER_MCAST_ADDRESS(ULONG *address);
 VOID _nx_ipv6_address_change_endian(ULONG *address);
 
 #endif /* NX_IPV6_UTIL_INLINE */
-INT   CHECK_IP_ADDRESSES_BY_PREFIX(ULONG *ip_addr1, ULONG *ip_addr2, ULONG prefix_len);
-INT   CHECK_IPV6_SOLICITED_NODE_MCAST_ADDRESS(ULONG *dest_ip, ULONG *myip);
+INT CHECK_IP_ADDRESSES_BY_PREFIX(ULONG *ip_addr1, ULONG *ip_addr2, ULONG prefix_len);
+INT CHECK_IPV6_SOLICITED_NODE_MCAST_ADDRESS(ULONG *dest_ip, ULONG *myip);
 ULONG IPv6_Address_Type(ULONG *ip_address);
 
 /* Define IPv6 API function prototype. */
 UINT _nxd_ipv6_enable(NX_IP *ip_ptr);
 UINT _nxd_ipv6_disable(NX_IP *ip_ptr);
-UINT _nxd_ipv6_address_get(NX_IP *ip_ptr, UINT address_index, NXD_ADDRESS *ip_address, ULONG *prefix_length, UINT *interface_index);
-UINT _nxd_ipv6_address_set(NX_IP *ip_ptr, UINT interface_index, NXD_ADDRESS *ip_address, ULONG prefix_length, UINT *address_index);
+UINT _nxd_ipv6_address_get(
+    NX_IP *ip_ptr,
+    UINT address_index,
+    NXD_ADDRESS *ip_address,
+    ULONG *prefix_length,
+    UINT *interface_index);
+UINT _nxd_ipv6_address_set(
+    NX_IP *ip_ptr,
+    UINT interface_index,
+    NXD_ADDRESS *ip_address,
+    ULONG prefix_length,
+    UINT *address_index);
 UINT _nxd_ipv6_address_delete(NX_IP *ip_ptr, UINT address_index);
-UINT _nxd_ipv6_address_change_notify(NX_IP *ip_ptr, VOID (*ipv6_address_change_notfiy)(NX_IP *ip_ptr, UINT status, UINT interface_index, UINT address_index, ULONG *ip_address));
+UINT _nxd_ipv6_address_change_notify(
+    NX_IP *ip_ptr,
+    VOID (*ipv6_address_change_notfiy)(
+        NX_IP *ip_ptr,
+        UINT status,
+        UINT interface_index,
+        UINT address_index,
+        ULONG *ip_address));
 UINT _nxd_ipv6_default_router_add(NX_IP *ip_ptr, NXD_ADDRESS *router_addr, ULONG router_lifetime, UINT interface_index);
 UINT _nxd_ipv6_default_router_delete(NX_IP *ip_ptr, NXD_ADDRESS *router_address);
-UINT _nxd_ipv6_default_router_get(NX_IP *ip_ptr, UINT interface_index, NXD_ADDRESS *router_addr, ULONG *router_lifetime, ULONG *prefix_length);
-UINT _nxd_ipv6_default_router_entry_get(NX_IP *ip_ptr, UINT interface_index, UINT entry_index, NXD_ADDRESS *router_addr, ULONG *router_lifetime, ULONG *prefix_length, ULONG *configuration_method);
+UINT _nxd_ipv6_default_router_get(
+    NX_IP *ip_ptr,
+    UINT interface_index,
+    NXD_ADDRESS *router_addr,
+    ULONG *router_lifetime,
+    ULONG *prefix_length);
+UINT _nxd_ipv6_default_router_entry_get(
+    NX_IP *ip_ptr,
+    UINT interface_index,
+    UINT entry_index,
+    NXD_ADDRESS *router_addr,
+    ULONG *router_lifetime,
+    ULONG *prefix_length,
+    ULONG *configuration_method);
 UINT _nxd_ipv6_default_router_number_of_entries_get(NX_IP *ip_ptr, UINT interface_index, UINT *num_entries);
 UINT _nxd_ipv6_multicast_interface_join(NX_IP *ip_ptr, NXD_ADDRESS *group_address, UINT interface_index);
 UINT _nxd_ipv6_multicast_interface_leave(NX_IP *ip_ptr, NXD_ADDRESS *group_address, UINT interface_index);
@@ -305,20 +330,57 @@ UINT _nxde_ipv6_enable(NX_IP *ip_ptr);
 UINT _nxde_ipv6_disable(NX_IP *ip_ptr);
 UINT _nxde_ipv6_stateless_address_autoconfig_disable(NX_IP *ip_ptr, UINT interface_index);
 UINT _nxde_ipv6_stateless_address_autoconfig_enable(NX_IP *ip_ptr, UINT interface_index);
-UINT _nxde_ipv6_address_get(NX_IP *ip_ptr, UINT address_index, NXD_ADDRESS *ip_address, ULONG *prefix_length, UINT *interface_index);
-UINT _nxde_ipv6_address_set(NX_IP *ip_ptr, UINT interface_index, NXD_ADDRESS *ip_address, ULONG prefix_length, UINT *address_index);
+UINT _nxde_ipv6_address_get(
+    NX_IP *ip_ptr,
+    UINT address_index,
+    NXD_ADDRESS *ip_address,
+    ULONG *prefix_length,
+    UINT *interface_index);
+UINT _nxde_ipv6_address_set(
+    NX_IP *ip_ptr,
+    UINT interface_index,
+    NXD_ADDRESS *ip_address,
+    ULONG prefix_length,
+    UINT *address_index);
 UINT _nxde_ipv6_address_delete(NX_IP *ip_ptr, UINT address_index);
-UINT _nxde_ipv6_address_change_notify(NX_IP *ip_ptr, VOID (*ipv6_address_change_notfiy)(NX_IP *ip_ptr, UINT status, UINT interface_index, UINT address_index, ULONG *ip_address));
-UINT _nxde_ipv6_default_router_add(NX_IP *ip_ptr, NXD_ADDRESS *router_addr, ULONG router_lifetime, UINT interface_index);
+UINT _nxde_ipv6_address_change_notify(
+    NX_IP *ip_ptr,
+    VOID (*ipv6_address_change_notfiy)(
+        NX_IP *ip_ptr,
+        UINT status,
+        UINT interface_index,
+        UINT address_index,
+        ULONG *ip_address));
+UINT _nxde_ipv6_default_router_add(
+    NX_IP *ip_ptr,
+    NXD_ADDRESS *router_addr,
+    ULONG router_lifetime,
+    UINT interface_index);
 UINT _nxde_ipv6_default_router_delete(NX_IP *ip_ptr, NXD_ADDRESS *router_address);
-UINT _nxde_ipv6_default_router_get(NX_IP *ip_ptr, UINT interface_index, NXD_ADDRESS *router_addr, ULONG *router_lifetime, ULONG *prefix_length);
-UINT _nxde_ipv6_default_router_entry_get(NX_IP *ip_ptr, UINT interface_index, UINT entry_index, NXD_ADDRESS *router_addr, ULONG *router_lifetime, ULONG *prefix_length, ULONG *configuration_method);
+UINT _nxde_ipv6_default_router_get(
+    NX_IP *ip_ptr,
+    UINT interface_index,
+    NXD_ADDRESS *router_addr,
+    ULONG *router_lifetime,
+    ULONG *prefix_length);
+UINT _nxde_ipv6_default_router_entry_get(
+    NX_IP *ip_ptr,
+    UINT interface_index,
+    UINT entry_index,
+    NXD_ADDRESS *router_addr,
+    ULONG *router_lifetime,
+    ULONG *prefix_length,
+    ULONG *configuration_method);
 UINT _nxde_ipv6_default_router_number_of_entries_get(NX_IP *ip_ptr, UINT interface_index, UINT *num_entries);
-UINT _nxde_ip_raw_packet_send(NX_IP *ip_ptr, NX_PACKET **packet_ptr_ptr,
-                              NXD_ADDRESS *destination_ip, ULONG protocol, UINT ttl, ULONG tos);
+UINT _nxde_ip_raw_packet_send(
+    NX_IP *ip_ptr,
+    NX_PACKET **packet_ptr_ptr,
+    NXD_ADDRESS *destination_ip,
+    ULONG protocol,
+    UINT ttl,
+    ULONG tos);
 UINT _nxde_ipv6_multicast_interface_join(NX_IP *ip_ptr, NXD_ADDRESS *group_address, UINT interface_index);
 UINT _nxde_ipv6_multicast_interface_leave(NX_IP *ip_ptr, NXD_ADDRESS *group_address, UINT interface_index);
 #endif
 
 #endif /* NX_IPV6_H */
-

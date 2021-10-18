@@ -9,7 +9,6 @@
 /*                                                                        */
 /**************************************************************************/
 
-
 /**************************************************************************/
 /**************************************************************************/
 /**                                                                       */
@@ -22,17 +21,14 @@
 
 #define NX_SOURCE_CODE
 
-
 /* Locate NetX IP data in this file.  */
 
 #define NX_IP_INIT
-
 
 /* Include necessary system files.  */
 
 #include "nx_api.h"
 #include "nx_ip.h"
-
 
 /**************************************************************************/
 /*                                                                        */
@@ -74,11 +70,10 @@
 /*                                            resulting in version 6.1    */
 /*                                                                        */
 /**************************************************************************/
-VOID  _nx_ip_initialize(VOID)
+VOID _nx_ip_initialize(VOID)
 {
 
     /* Initialize the created IP instance variables.  */
-    _nx_ip_created_ptr =     NX_NULL;
-    _nx_ip_created_count =   0;
+    _nx_ip_created_ptr = NX_NULL;
+    _nx_ip_created_count = 0;
 }
-

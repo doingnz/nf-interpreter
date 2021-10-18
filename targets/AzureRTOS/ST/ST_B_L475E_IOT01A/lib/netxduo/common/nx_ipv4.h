@@ -9,7 +9,6 @@
 /*                                                                        */
 /**************************************************************************/
 
-
 /**************************************************************************/
 /**************************************************************************/
 /**                                                                       */
@@ -19,7 +18,6 @@
 /**                                                                       */
 /**************************************************************************/
 /**************************************************************************/
-
 
 /**************************************************************************/
 /*                                                                        */
@@ -50,54 +48,51 @@
 #ifndef NX_IPV4_H
 #define NX_IPV4_H
 
-
 #ifndef NX_DISABLE_IPV4
-#define NX_IP_VERSION                    0x45000000UL /* Version 4, Length of 5   */
+#define NX_IP_VERSION 0x45000000UL /* Version 4, Length of 5   */
 
-#define NX_IP_NORMAL_LENGTH              5            /* Normal IP header length  */
-#define NX_IP_HEADER_LENGTH_ENCODE_6     6            /* IP header length 6. */
+#define NX_IP_NORMAL_LENGTH          5 /* Normal IP header length  */
+#define NX_IP_HEADER_LENGTH_ENCODE_6 6 /* IP header length 6. */
 
 /* Define IP options.  */
 
-#define NX_IP_OPTION_COPY_FLAG           0x80000000UL       /* All fragments must carry the option. */
-#define NX_IP_OPTION_CLASS               0x00000000UL       /* Control. */
+#define NX_IP_OPTION_COPY_FLAG           0x80000000UL /* All fragments must carry the option. */
+#define NX_IP_OPTION_CLASS               0x00000000UL /* Control. */
 #define NX_IP_OPTION_ROUTER_ALERT_NUMBER 0x14000000UL
 #define NX_IP_OPTION_ROUTER_ALERT_LENGTH 0x00040000UL
 #define NX_IP_OPTION_ROUTER_ALERT_VALUE  0x00000000UL
 
-
 /* Define IP option type.  */
-#define NX_IP_OPTION_END                 0
-#define NX_IP_OPTION_NO_OPERATION        1
-#define NX_IP_OPTION_INTERNET_TIMESTAMP  68
-
+#define NX_IP_OPTION_END                0
+#define NX_IP_OPTION_NO_OPERATION       1
+#define NX_IP_OPTION_INTERNET_TIMESTAMP 68
 
 /* Define IP fragmenting information.  */
 
 #ifdef NX_DONT_FRAGMENT
-#define NX_IP_DONT_FRAGMENT              NX_DONT_FRAGMENT
+#define NX_IP_DONT_FRAGMENT NX_DONT_FRAGMENT
 #else
-#define NX_IP_DONT_FRAGMENT              0x00004000UL /* Don't fragment bit       */
-#endif /* NX_DONT_FRAGMENT */
+#define NX_IP_DONT_FRAGMENT 0x00004000UL /* Don't fragment bit       */
+#endif                                   /* NX_DONT_FRAGMENT */
 #ifdef NX_MORE_FRAGMENTS
-#define NX_IP_MORE_FRAGMENT              NX_MORE_FRAGMENTS
+#define NX_IP_MORE_FRAGMENT NX_MORE_FRAGMENTS
 #else
-#define NX_IP_MORE_FRAGMENT              0x00002000UL /* More fragments           */
-#endif /* NX_DONT_FRAGMENT */
-#define NX_IP_FRAGMENT_MASK              0x00003FFFUL /* Mask for fragment bits   */
+#define NX_IP_MORE_FRAGMENT 0x00002000UL /* More fragments           */
+#endif                                   /* NX_DONT_FRAGMENT */
+#define NX_IP_FRAGMENT_MASK 0x00003FFFUL /* Mask for fragment bits   */
 #ifdef NX_FRAG_OFFSET_MASK
-#define NX_IP_OFFSET_MASK                NX_FRAG_OFFSET_MASK
+#define NX_IP_OFFSET_MASK NX_FRAG_OFFSET_MASK
 #else
-#define NX_IP_OFFSET_MASK                0x00001FFFUL /* Mask for fragment offset */
-#endif /* NX_FRAG_OFFSET_MASK */
-#define NX_IP_ALIGN_FRAGS                8            /* Fragment alignment       */
+#define NX_IP_OFFSET_MASK 0x00001FFFUL /* Mask for fragment offset */
+#endif                                 /* NX_FRAG_OFFSET_MASK */
+#define NX_IP_ALIGN_FRAGS 8            /* Fragment alignment       */
 
 /* Define basic IP Header constant.  */
 
 /* Define Basic Internet packet header data type.  This will be used to
    build new IP packets and to examine incoming packets into NetX.  */
 
-typedef  struct NX_IPV4_HEADER_STRUCT
+typedef struct NX_IPV4_HEADER_STRUCT
 {
     /* Define the first 32-bit word of the IP header.  This word contains
        the following information:
@@ -147,7 +142,7 @@ typedef  struct NX_IPV4_HEADER_STRUCT
     ULONG nx_ip_header_destination_ip;
 } NX_IPV4_HEADER;
 
-#if 0 /* Not support for STM32L4XX.  */
+#if 0  /* Not support for STM32L4XX.  */
 /* Define IPv4 internal function prototypes.  */
 VOID  _nx_ip_forward_packet_process(NX_IP *ip_ptr, NX_PACKET *packet_ptr);
 VOID  _nx_ip_fragment_forward_packet(NX_IP *ip_ptr, NX_PACKET *packet_ptr, ULONG destination_ip, ULONG fragment, ULONG next_hop_address);
@@ -161,7 +156,10 @@ UINT  _nx_ipv4_option_process(NX_IP *ip_ptr, NX_PACKET *packet_ptr);
 
 /* Define IPv4 function prototypes.  */
 
-UINT _nx_ip_address_change_notify(NX_IP *ip_ptr, VOID (*ip_address_change_notify)(NX_IP *, VOID *), VOID *additional_info);
+UINT _nx_ip_address_change_notify(
+    NX_IP *ip_ptr,
+    VOID (*ip_address_change_notify)(NX_IP *, VOID *),
+    VOID *additional_info);
 UINT _nx_ip_address_get(NX_IP *ip_ptr, ULONG *ip_address, ULONG *network_mask);
 UINT _nx_ip_address_set(NX_IP *ip_ptr, ULONG ip_address, ULONG network_mask);
 UINT _nx_ip_gateway_address_set(NX_IP *ip_ptr, ULONG ip_address);
@@ -169,20 +167,25 @@ UINT _nx_ip_gateway_address_get(NX_IP *ip_ptr, ULONG *ip_address);
 UINT _nx_ip_gateway_address_clear(NX_IP *ip_ptr);
 UINT _nx_ip_interface_address_get(NX_IP *ip_ptr, UINT interface_index, ULONG *ip_address, ULONG *network_mask);
 UINT _nx_ip_interface_address_set(NX_IP *ip_ptr, UINT interface_index, ULONG ip_address, ULONG network_mask);
-UINT _nx_ip_raw_packet_send(NX_IP *ip_ptr, NX_PACKET *packet_ptr,
-                            ULONG destination_ip, ULONG type_of_service);
-UINT _nx_ip_raw_packet_source_send(NX_IP *ip_ptr, NX_PACKET *packet_ptr, ULONG destination_ip, UINT address_index, ULONG type_of_service);
-UINT _nx_ip_static_route_add(NX_IP *ip_ptr, ULONG network_address,
-                             ULONG net_mask, ULONG next_hop);
+UINT _nx_ip_raw_packet_send(NX_IP *ip_ptr, NX_PACKET *packet_ptr, ULONG destination_ip, ULONG type_of_service);
+UINT _nx_ip_raw_packet_source_send(
+    NX_IP *ip_ptr,
+    NX_PACKET *packet_ptr,
+    ULONG destination_ip,
+    UINT address_index,
+    ULONG type_of_service);
+UINT _nx_ip_static_route_add(NX_IP *ip_ptr, ULONG network_address, ULONG net_mask, ULONG next_hop);
 UINT _nx_ip_static_route_delete(NX_IP *ip_ptr, ULONG network_address, ULONG net_mask);
 UINT _nx_ipv4_multicast_interface_join(NX_IP *ip_ptr, ULONG group_address, UINT interface_index);
 UINT _nx_ipv4_multicast_interface_leave(NX_IP *ip_ptr, ULONG group_address, UINT interface_index);
 
-
 /* Define error checking shells for API services.  These are only referenced by the
    application.  */
 
-UINT _nxe_ip_address_change_notify(NX_IP *ip_ptr, VOID (*ip_address_change_notify)(NX_IP *, VOID *), VOID *additional_info);
+UINT _nxe_ip_address_change_notify(
+    NX_IP *ip_ptr,
+    VOID (*ip_address_change_notify)(NX_IP *, VOID *),
+    VOID *additional_info);
 UINT _nxe_ip_address_get(NX_IP *ip_ptr, ULONG *ip_address, ULONG *network_mask);
 UINT _nxe_ip_address_set(NX_IP *ip_ptr, ULONG ip_address, ULONG network_mask);
 UINT _nxe_ip_interface_address_get(NX_IP *ip_ptr, UINT interface_index, ULONG *ip_address, ULONG *network_mask);
@@ -190,12 +193,14 @@ UINT _nxe_ip_interface_address_set(NX_IP *ip_ptr, UINT interface_index, ULONG ip
 UINT _nxe_ip_gateway_address_set(NX_IP *ip_ptr, ULONG ip_address);
 UINT _nxe_ip_gateway_address_get(NX_IP *ip_ptr, ULONG *ip_address);
 UINT _nxe_ip_gateway_address_clear(NX_IP *ip_ptr);
-UINT _nxe_ip_raw_packet_send(NX_IP *ip_ptr, NX_PACKET **packet_ptr_ptr,
-                             ULONG destination_ip, ULONG type_of_service);
-UINT _nxe_ip_raw_packet_source_send(NX_IP *ip_ptr, NX_PACKET **packet_ptr_ptr,
-                                    ULONG destination_ip, UINT address_index, ULONG type_of_service);
-UINT _nxe_ip_static_route_add(NX_IP *ip_ptr, ULONG network_address,
-                              ULONG net_mask, ULONG next_hop);
+UINT _nxe_ip_raw_packet_send(NX_IP *ip_ptr, NX_PACKET **packet_ptr_ptr, ULONG destination_ip, ULONG type_of_service);
+UINT _nxe_ip_raw_packet_source_send(
+    NX_IP *ip_ptr,
+    NX_PACKET **packet_ptr_ptr,
+    ULONG destination_ip,
+    UINT address_index,
+    ULONG type_of_service);
+UINT _nxe_ip_static_route_add(NX_IP *ip_ptr, ULONG network_address, ULONG net_mask, ULONG next_hop);
 UINT _nxe_ip_static_route_delete(NX_IP *ip_ptr, ULONG network_address, ULONG net_mask);
 UINT _nxe_ipv4_multicast_interface_join(NX_IP *ip_ptr, ULONG group_address, UINT interface_index);
 UINT _nxe_ipv4_multicast_interface_leave(NX_IP *ip_ptr, ULONG group_address, UINT interface_index);
@@ -208,4 +213,3 @@ UINT _nxe_ipv4_multicast_interface_leave(NX_IP *ip_ptr, ULONG group_address, UIN
 #endif /* NX_IPSEC_ENABLE */
 #endif /* FEATURE_NX_IPV6 */
 #endif /* NX_IPV4_H */
-
